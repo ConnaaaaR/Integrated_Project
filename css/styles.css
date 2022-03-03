@@ -1,64 +1,68 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
-.headline {
+h1 {
+    font-family: 'Merriweather', serif;
+    margin-top: 25px;
+    line-height: 52px;
+}
+h2{
+    margin-top: 20px;
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 25px;
+}
+h3{
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    margin-top: 25px;
+    font-weight: 700;
+    line-height: 25px;
+}
+p {
+    margin-top: 10px;
+    font-size: 12px;
+}
+.nameDate {
+    display: flex;
+}
+.name p{
+    font-weight: 700;
+    font-size: 12px;
+}
+.date{
+    font-weight: 300;
+    font-size: 12px;
+}
 
-    
-    
+.banner {
+    background-color: black;
+    height: 2px;
 }
 .category {
-    width: fit-content;
-    padding: 0.2% 3%;
-    color: black;
-    font-weight: 700;
-    background-color: white; 
-}
-.content {
-    padding: 2% 0;
-    min-height: 272px;
-    overflow: hidden;
-    border: 1px solid black;
-}
-
-.content p {
-    margin-top: 1%;
-}
-.bullets ul li {
-    list-style-type: square;
-    margin: 5%;
-}
-.banner {
-    padding: 1% 0 0 0.2%;
+    width: 81px;
     color: white;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 11px;
     background-color: black;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.banner h1 {
-    margin: 2%;
+    border-radius: 0 0 4px 0;
+    justify-content: left;
+
 }
 
-.midStory {
-    
-    height: 430px;
-    align-content: center;
-}
-.minor {
+/* .minor {
     height:  20%;
-    /* border-bottom: 1px solid black; */
-}
-.minor h1 {
+    border-bottom: 1px solid black;
+} */
+/* .minor h1 {
     font-size: 1rem;
     margin: 2% 0;
 }
 .minor p {
     font-weight: 300;
-    
     text-transform: uppercase;
-}
+} */
 
 
 .subMinor {
