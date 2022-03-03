@@ -45,10 +45,14 @@ p {
     font-weight: 600;
     font-style: normal;
     font-size: 11px;
+    
     background-color: black;
     border-radius: 0 0 4px 0;
     justify-content: left;
 
+}
+.category p {
+    margin-left: 5px;
 }
 
 /* .minor {
