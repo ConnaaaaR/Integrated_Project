@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .headline {
-    border: 1px solid black;
+
     
     
 }
@@ -14,14 +14,14 @@ body {
     background-color: white; 
 }
 .content {
-    margin: 2% 0;
-    padding: 0 12.5%;
+    padding: 2% 0;
+    min-height: 272px;
+    overflow: hidden;
+    border: 1px solid black;
 }
 
 .content p {
-    grid-column-start: 2;
     margin-top: 1%;
-    grid-column-end: 7;
 }
 .bullets ul li {
     list-style-type: square;
@@ -29,7 +29,6 @@ body {
 }
 .banner {
     padding: 1% 0 0 0.2%;
-   
     color: white;
     background-color: black;
     width: 100%;
@@ -43,9 +42,8 @@ body {
 }
 
 .midStory {
-    flex-direction: column;
-    border: 1px solid black;
-    height: 315px;
+    
+    height: 430px;
     align-content: center;
 }
 .minor {
@@ -78,7 +76,6 @@ body {
 }
 
 .button {
-    width: 100%;
     justify-content: right;
     
 }
