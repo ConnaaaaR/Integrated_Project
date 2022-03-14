@@ -1,3 +1,32 @@
+<?php
+    require_once 'classes/DBConnector.php';
+     
+    try{
+        $sideStories = Get::all('articles', 7);
+    }
+    catch(Exeption $e){
+        die("Exception: ".$e-> getMessage());
+    }
+
+    // returns category from Id
+    function getCategory($id){
+        try{
+            $categories = Get::byId('genres', $id);
+            
+            if($categories){
+                return $categories->genre; 
+            }
+            else{
+                throw new Exception("failed to retrieve genre");  
+            } 
+        }
+        catch(PDOException $e){
+            echo "error: " . $e->getMessage();
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,7 +118,28 @@
         <!-- end medium stories -->
         <!-- sidebar -->
         <div class="width-4 nested">
+            <?php
+                foreach($sideStories as $sideStory){
+            ?>
             <div class="width-12">
+                <!-- Category & banner -->
+                <div class="banner">
+                    <div class="category"><p><?=getCategory($sideStory->genre_id)?></p></div>
+                </div>
+                <!-- Headline -->
+                <h3><?= $sideStory ->short_headline ?></h3>
+                <!-- Date w/ formatting -->
+                <div class="date">
+                    <p><?php 
+                    $formatDate = strtotime($sideStory ->date);
+                    echo date('l, j F', $formatDate);
+                    ?></p>
+                </div>
+            </div> 
+            <?php
+                }
+            ?>
+            <!-- <div class="width-12">
                 <div class="banner">
                     <div class="category"><p>POLITICS</p></div>
                 </div>
@@ -142,9 +192,6 @@
                 <div class="date">
                     <p>Thursday, 3 March</p>
                 </div>
-                <div class="date">
-                    <p>Thursday, 3 March</p>
-                </div>
             </div> 
             <div class="width-12">
                 <div class="banner">
@@ -154,7 +201,9 @@
                 <div class="date">
                     <p>Thursday, 3 March</p>
                 </div>
-            </div> 
+            </div>  -->
+
+
         </div>
     </div>
    

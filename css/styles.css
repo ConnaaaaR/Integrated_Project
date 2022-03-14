@@ -52,6 +52,7 @@ p {
 
 }
 .category p {
+    text-transform: uppercase;
     margin-left: 5px;
 }
 
