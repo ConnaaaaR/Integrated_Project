@@ -8,7 +8,10 @@
         die("Exception: ".$e-> getMessage());
     }
 
+
+    //----------------------------------
     // returns category from Id
+    //----------------------------------
     function getCategory($id){
         try{
             $categories = Get::byId('genres', $id);
@@ -17,7 +20,30 @@
                 return $categories->genre; 
             }
             else{
-                throw new Exception("failed to retrieve genre");  
+                throw new Exception("Failed to retrieve genre!");  
+            } 
+        }
+        catch(PDOException $e){
+            echo "error: " . $e->getMessage();
+        }
+    }
+    //----------------------------------
+    // Gets author first and last name and combines and prints
+    //----------------------------------
+    function getAuthor($id){
+        try{
+           
+            $writerId = Get::byId('writers', $id);
+            $nameArr = array(
+                $writerId->first_name,
+                $writerId->last_name
+            );
+            $nameStr = implode(" ", $nameArr);
+            if($writerId){
+                return $nameStr;
+            }
+            else{
+                throw new Exception("Failed to retrieve author!");  
             } 
         }
         catch(PDOException $e){
