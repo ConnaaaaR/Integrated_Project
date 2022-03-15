@@ -1,6 +1,10 @@
 <?php
+    //----------------------------------
+    // retreive stories
+    //----------------------------------
+    
     require_once 'classes/DBConnector.php';
-     
+     // small side stories
     try{
         $sideStories = Get::all('articles', 7);
     }
@@ -8,9 +12,25 @@
         die("Exception: ".$e-> getMessage());
     }
 
+    // medium stories
+    try{
+        $medStories = Get::all('articles', 4);
+    }
+    catch(Exeption $e){
+        die("Exception: ".$e-> getMessage());
+    }
+
 
     //----------------------------------
-    // returns category from Id
+    // Format date
+    //----------------------------------
+    function setDate($elementId){
+        $formatDate = strtotime($elementId->date);
+        return date('l, j F', $formatDate);
+    }
+
+    //----------------------------------
+    // Returns category from Id
     //----------------------------------
     function getCategory($id){
         try{
@@ -51,8 +71,6 @@
         }
     }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,20 +112,25 @@
             </div>
         <!-- end main headline -->
         <!-- medium stories -->
+        <?php
+            foreach($medStories as $medStory){
+        ?>
             <div class="width-6">
                 <div class="banner">
-                    <div class="category"><p>LIFESTYLE</p></div>
+                    <div class="category"><p><?= getCategory($medStory->genre_id) ?></p></div>
                 </div>
-                <h3>Loose produce reduce food and plastic waste</h3>
+                <h3><?= $medStory->headline ?></h3>
                 <div class="date">
-                    <p>Thursday, 3 March</p>
+                    <p><?= setDate($medStory) ?></p>
                 </div>
-                <p>Fresh fruit and vegetables should be sold loose and without best-before labels to reduce plastic packaging, prevent waste and cut emissions, according to government-funded research.</p>
-                <p>It tested five commonly wasted items — apples, bananas, broccoli, cucumber and potatoes — in the original packaging and loose and stored at different temperatures. The charity found that selling them loose and removing best-before dates could result in a combined saving of about 100,000 tonnes of household food waste, more than
+                <p><?= $medStory->article?></p>
+                
+            </div>
+        <?php
+            }
+        ?>
 
-                </p>
-            </div>
-            <div class="width-6">
+            <!-- <div class="width-6">
                 <div class="banner">
                     <div class="category"><p>POLITICS</p></div>
                 </div>
@@ -139,7 +162,7 @@
                 </div>
                 <p>MPs will get a £2,200 pay rise from next month, the parliamentary spending watchdog has announced, sparking a backlash given the change will coincide with the national insurance hike and a growing “cost of living crisis”.</p>
                 <p>The 2.7% increase in MPs' salaries is nearly half the current rate of inflation, effectively meaning they will get a real-terms pay cut, but comes against a backdrop of significant economic hardship for many and the Bank of England urging workers not to ask for sizeable pay rises to try to stop prices spiralling out of control.</p>
-            </div>
+            </div> -->
         </div>
         <!-- end medium stories -->
         <!-- sidebar -->
@@ -156,10 +179,7 @@
                 <h3><?= $sideStory ->short_headline ?></h3>
                 <!-- Date w/ formatting -->
                 <div class="date">
-                    <p><?php 
-                    $formatDate = strtotime($sideStory ->date);
-                    echo date('l, j F', $formatDate);
-                    ?></p>
+                    <p><?= setDate($sideStory)?></p>
                 </div>
             </div> 
             <?php
