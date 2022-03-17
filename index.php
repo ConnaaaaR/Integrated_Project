@@ -58,7 +58,7 @@
         }
     }
     //----------------------------------
-    // Gets author first and last name and combines and prints
+    // Returns combined author name
     //----------------------------------
     function getAuthor($id){
         try{
