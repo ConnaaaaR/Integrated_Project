@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2022 at 01:10 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Mar 24, 2022 at 02:17 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,14 +69,14 @@ INSERT INTO `articles` (`id`, `short_headline`, `headline`, `subtitle`, `article
 
 CREATE TABLE `genres` (
   `id` int(11) NOT NULL,
-  `genre` varchar(30) NOT NULL
+  `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `genres`
 --
 
-INSERT INTO `genres` (`id`, `genre`) VALUES
+INSERT INTO `genres` (`id`, `name`) VALUES
 (1, 'World'),
 (2, 'Politics'),
 (3, 'Economy'),

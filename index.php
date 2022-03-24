@@ -23,9 +23,14 @@
 
      // Small stories
     try{
-        $sideStories = Get::all('articles', 13);
+        // $sideStories = Get::all('articles', 13);
+
+        $worldStories = Get::byCategory('World',3);
+        $covidStories = Get::byCategory('COVID',3);
+        $economyStories = Get::byCategory('Economy',3);
+        $scienceStories = Get::byCategory('Science',3);
         
-        // $sideStories = Get::byCategory('Economy');
+        //$sideStories = Get::byCategory('Economy');
     }
     catch(Exeption $e){
         die("Exception: ".$e-> getMessage());
@@ -63,13 +68,13 @@
     function getAuthor($id){
         try{
             $writerId = Get::byId('writers', $id);
-            $nameArr = array(
-                $writerId->first_name,
-                $writerId->last_name
-            );
-            $nameStr = implode(" ", $nameArr);
+            // $nameArr = array(
+            //     $writerId->first_name,
+            //     $writerId->last_name
+            // );
+            // $nameStr = implode(" ", $nameArr);
             if($writerId){
-                return $nameStr;
+                return $writerId->first_name . " " . $writerId->last_name;
             }
             else{
                 throw new Exception("Failed to retrieve author!");  
@@ -111,7 +116,7 @@
                 <div class="banner">
                     <div class="category"><p><?= getCategory($largeStory->genre_id)?></p></div>
                 </div>
-                <h1><?= $largeStory->headline ?></h1>
+                <h1> <a href="article.php?id=<?= $largeStory->id ?>"><?= $largeStory->headline ?></a></h1>
                 <h2><?= $largeStory->summary ?></h2>
                 <div class="nameDate">
                     <div class="name">
@@ -148,24 +153,106 @@
         <!-- end medium stories -->
         <!-- sidebar -->
         <div class="width-4 nested">
-            <?php
-                foreach($sideStories as $sideStory){
-            ?>
             <div class="width-12">
                 <!-- Category & banner -->
                 <div class="banner">
-                    <div class="category"><p><?=getCategory($sideStory->genre_id)?></p></div>
+                    <div class="category"><p>World</p></div>
                 </div>
+            </div>
+
+
+            <?php
+                foreach($worldStories as $worldStory){
+            ?>
+            <div class="width-12">
+               
                 <!-- Headline -->
-                <h3><?= $sideStory ->short_headline ?></h3>
+                <h3><?= $worldStory ->short_headline ?></h3>
                 <!-- Date w/ formatting -->
                 <div class="date">
-                    <p><?= setDate($sideStory)?></p>
+                    <p><?= setDate($worldStory)?></p>
                 </div>
             </div> 
             <?php
                 }
             ?>
+
+            <div class="width-12">
+                <!-- Category & banner -->
+                <div class="banner">
+                    <div class="category"><p>COVID</p></div>
+                </div>
+            </div>
+
+
+            <?php
+                foreach($covidStories as $covidStory){
+            ?>
+            <div class="width-12">
+               
+                <!-- Headline -->
+                <h3><?= $covidStory ->short_headline ?></h3>
+                <!-- Date w/ formatting -->
+                <div class="date">
+                    <p><?= setDate($covidStory)?></p>
+                </div>
+                
+            </div> 
+            <?php
+                }
+            ?>
+
+            <div class="width-12">
+                <!-- Category & banner -->
+                <div class="banner">
+                    <div class="category"><p>Economy</p></div>
+                </div>
+            </div>
+
+
+            <?php
+                foreach($economyStories as $economyStory){
+            ?>
+            <div class="width-12">
+               
+                <!-- Headline -->
+                <h3><?= $economyStory ->short_headline ?></h3>
+                <!-- Date w/ formatting -->
+                <div class="date">
+                    <p><?= setDate($economyStory)?></p>
+                </div>
+            </div> 
+            <?php
+                }
+            ?>
+
+
+            <div class="width-12">
+                <!-- Category & banner -->
+                <div class="banner">
+                    <div class="category"><p>Science</p></div>
+                </div>
+            </div>
+
+
+            <?php
+                foreach($scienceStories as $scienceStory){
+            ?>
+            <div class="width-12">
+               
+                <!-- Headline -->
+                <h3><?= $scienceStory ->short_headline ?></h3>
+                <!-- Date w/ formatting -->
+                <div class="date">
+                    <p><?= setDate($scienceStory)?></p>
+                </div>
+            </div> 
+            <?php
+                }
+            ?>
+
+
+
         </div>
     </div>
    
