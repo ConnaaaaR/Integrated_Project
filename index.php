@@ -1,5 +1,6 @@
 <?php
     require_once 'classes/DBConnector.php';
+    require_once 'utils/utils.php';
     //----------------------------------
     // retreive stories
     //----------------------------------
@@ -36,54 +37,6 @@
         die("Exception: ".$e-> getMessage());
     }
 
-
-    //----------------------------------
-    // Format date
-    //----------------------------------
-    function setDate($elementId){
-        $formatDate = strtotime($elementId->date);
-        return date('l, j F', $formatDate);
-    }
-    //----------------------------------
-    // Returns category from Id
-    //----------------------------------
-    function getCategory($id){
-        try{
-            $categories = Get::byId('genres', $id);
-            
-            if($categories){
-                return $categories->name; 
-            }
-            else{
-                throw new Exception("Failed to retrieve genre!");  
-            } 
-        }
-        catch(PDOException $e){
-            echo "error: " . $e->getMessage();
-        }
-    }
-    //----------------------------------
-    // Returns combined author name
-    //----------------------------------
-    function getAuthor($id){
-        try{
-            $writerId = Get::byId('writers', $id);
-            // $nameArr = array(
-            //     $writerId->first_name,
-            //     $writerId->last_name
-            // );
-            // $nameStr = implode(" ", $nameArr);
-            if($writerId){
-                return $writerId->first_name . " " . $writerId->last_name;
-            }
-            else{
-                throw new Exception("Failed to retrieve author!");  
-            } 
-        }
-        catch(PDOException $e){
-            echo "error: " . $e->getMessage();
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +57,7 @@
     <link rel="icon" href="icon.svg">
     
 
-    <title>World News</title>
+    <title>World News | <?= tabDate(); ?></title>
 </head>
 <body>
     <div class="container">
@@ -116,7 +69,7 @@
                 <div class="banner">
                     <div class="category"><p><?= getCategory($largeStory->genre_id)?></p></div>
                 </div>
-                <h1> <a href="article.php?id=<?= $largeStory->id ?>"><?= $largeStory->headline ?></a></h1>
+                <h1 class="artLink"> <a href="article.php?id=<?= $largeStory->id ?>"><?= $largeStory->headline ?></a></h1>
                 <h2><?= $largeStory->summary ?></h2>
                 <div class="nameDate">
                     <div class="name">
@@ -139,7 +92,7 @@
                 <div class="banner">
                     <div class="category"><p><?= getCategory($medStory->genre_id) ?></p></div>
                 </div>
-                <h3><?= $medStory->headline ?></h3>
+                <h3 class="artLink"> <a href="article.php?id=<?= $medStory->id ?>"> <?= $medStory->headline ?></a></h3>
                 <div class="date">
                     <p><?= setDate($medStory) ?></p>
                 </div>
@@ -167,7 +120,7 @@
             <div class="width-12">
                
                 <!-- Headline -->
-                <h3><?= $worldStory ->short_headline ?></h3>
+                <h3 class="artLink"><a href="article.php?id=<?= $worldStory->id?>"><?= $worldStory->short_headline ?></a></h3>
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($worldStory)?></p>
@@ -191,7 +144,7 @@
             <div class="width-12">
                
                 <!-- Headline -->
-                <h3><?= $covidStory ->short_headline ?></h3>
+                <h3 class="artLink"><a href="article.php?id=<?= $covidStory->id?>"><?= $covidStory ->short_headline ?></a></h3 class="artLink">
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($covidStory)?></p>
@@ -216,7 +169,7 @@
             <div class="width-12">
                
                 <!-- Headline -->
-                <h3><?= $economyStory ->short_headline ?></h3>
+                <h3 class="artLink"><a  href="article.php?id=<?= $economyStory->id?>"><?= $economyStory ->short_headline ?></a></h3 class="artLink">
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($economyStory)?></p>
@@ -241,7 +194,7 @@
             <div class="width-12">
                
                 <!-- Headline -->
-                <h3><?= $scienceStory ->short_headline ?></h3>
+                <h3 class="artLink"><a href="article.php?id=<?= $scienceStory->id?>"><?= $scienceStory ->short_headline ?></a></h3>
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($scienceStory)?></p>
