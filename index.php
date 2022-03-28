@@ -56,15 +56,28 @@
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
     <link rel="icon" href="icon.svg">
     
-
+    <!-- 
+        tabDate displays the date in an abbreviated format and is used in the tab to show the user
+        the current date.
+    -->
     <title>World News | <?= tabDate(); ?></title>
 </head>
 <body>
     <div class="container">
+    <!-- nav bar -->
+    <div class=" width-12 navCont nested">
+        <button class="width-2 navButtons"><a href="#">HOME</a></button>
+        <button class="width-2 navButtons"><a href="">UPDATE</a></button>
+        <button class="width-2 navButtons"><a href="">DELETE</a></button>
+        <button class="width-2 navButtons"><a href="">CREATE</a></button>
+        <button class="width-2 navButtons"><a href="addAuthorForm.php">ADD AUTHOR</a></button>
+    </div>
+    <!-- WN logo -->
+    <div class="width-12 logo"> <h1>WORLD NEWS</h1> </div>
     <!-- main headline -->
     <?php foreach($largeStories as $largeStory){ ?>
         <div class="width-8 headline nested">
-            <div class="width-12">
+            <div class="width-12 story">
                 
                 <div class="banner">
                     <div class="category"><p><?= getCategory($largeStory->genre_id)?></p></div>
@@ -73,7 +86,7 @@
                 <h2><?= $largeStory->summary ?></h2>
                 <div class="nameDate">
                     <div class="name">
-                        <p>by <?= getAuthor($largeStory->id) ?> &nbsp;•&nbsp;</p>
+                        <p>by <?= getAuthor($largeStory->writer_id) ?> &nbsp;•&nbsp;</p>
                     </div>
                     <div class="date">
                         <p><?= setDate($largeStory) ?></p>
@@ -88,7 +101,7 @@
         <?php
             foreach($medStories as $medStory){
         ?>
-            <div class="width-6">
+            <div class="width-6 story">
                 <div class="banner">
                     <div class="category"><p><?= getCategory($medStory->genre_id) ?></p></div>
                 </div>
@@ -96,7 +109,7 @@
                 <div class="date">
                     <p><?= setDate($medStory) ?></p>
                 </div>
-                <p><?= $medStory->article?></p>
+                <p><?=nl2br($medStory->summary)?></p>
                 
             </div>
         <?php

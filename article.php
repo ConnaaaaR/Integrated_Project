@@ -26,11 +26,6 @@ try{
 catch(Exeption $e){
     die("Exception: ".$e-> getMessage());
 }
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +50,16 @@ catch(Exeption $e){
     <title>World News | <?= $story->headline ?></title>
 </head>
 <body> <div class="container">
+    <!-- nav bar -->
+    <div class=" width-12 navCont nested">
+        <button class="width-2 navButtons"><a href="#">HOME</a></button>
+        <button class="width-2 navButtons"><a href="">UPDATE</a></button>
+        <button class="width-2 navButtons"><a href="">DELETE</a></button>
+        <button class="width-2 navButtons"><a href="">CREATE</a></button>
+        <button class="width-2 navButtons"><a href="addAuthorForm.php">ADD AUTHOR</a></button>
+    </div>
+    <!-- WN logo -->
+    <div class="width-5 logo"> <a href="index.php"> <h1>WORLD NEWS</h1></a> </div>
     <!-- main headline -->
         <div class="width-12 headline nested">
             <div class="width-8">
@@ -63,16 +68,17 @@ catch(Exeption $e){
                     <div class="category"><p><?= getCategory($story->genre_id)?></p></div>
                 </div>
                 <h1> <?= $story->headline ?></h1>
-                <h2><?= $story->summary ?></h2>
+                <h2><?= $story->subtitle ?></h2>
                 <div class="nameDate">
                     <div class="name">
-                        <p>by <?= getAuthor($story->writer_id) ?> &nbsp;•&nbsp;</p>
+                        <p>by <?= getAuthor($story->id) ?> &nbsp;•&nbsp;</p>
                     </div>
                     <div class="date">
                         <p><?= setDate($story) ?></p>
                     </div>
                 </div>
-                <p><?= $story->article?></p>
+                <!-- sets the \r\n to new line in html format -->
+                <p><?= nl2br($story->article);?></p>
             </div>
             <div class="width-4 nested">
             <div class="width-12">

@@ -1,69 +1,115 @@
-body {
-    font-family: 'Roboto', sans-serif;
+:root {
+    --black: rgb(20, 20, 20);
 }
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
 h1 {
-    font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
     margin-top: 25px;
     line-height: 52px;
 }
 
-h2{
+h2 {
     margin-top: 20px;
     font-weight: 300;
     font-size: 21px;
     line-height: 25px;
 }
-h3{
-    font-family: 'Merriweather', serif;
+
+h3 {
+    font-family: "Merriweather", serif;
     font-size: 18px;
     margin-top: 25px;
     font-weight: 700;
     line-height: 25px;
 }
+
 p {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 14px;
 }
+
+.navCont {
+    /* background-color: white; */
+    height: 40px;
+    border-top: 5px solid var(--black);
+    /* margin: 5px 0 0px 0; */
+}
+
+.navButtons {
+    background-color: var(--black);
+    color: white;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 11px;
+    border: none;
+    border-radius: 0 0 8px 0;
+}
+
+.navButtons:hover {
+    background-color: white;
+    color: var(--black);
+    transition: background-color 0.15s;
+}
+
+.logo {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.story {
+    margin-bottom: 10px;
+}
+
 .artLink:hover {
     text-decoration: underline;
 }
+
 .nameDate {
     display: flex;
 }
-.name p{
+
+.name p {
     font-weight: 700;
     font-size: 12px;
 }
-.date{
+
+.date {
     font-weight: 300;
     font-size: 12px;
 }
 
 .banner {
-    background-color: rgb(37, 37, 37);
+    background-color: var(--black);
     height: 2px;
 }
+
 .category {
     width: 81px;
     color: white;
     font-weight: 600;
     font-style: normal;
     font-size: 11px;
-    
-    background-color: rgb(37, 37, 37);
+    background-color: var(--black);
     border-radius: 0 0 4px 0;
     justify-content: left;
-
 }
+
 .category p {
     text-transform: uppercase;
     margin-left: 5px;
 }
 
+
 /* .minor {
     height:  20%;
     border-bottom: 1px solid black;
 } */
+
+
 /* .minor h1 {
     font-size: 1rem;
     margin: 2% 0;
@@ -73,32 +119,32 @@ p {
     text-transform: uppercase;
 } */
 
-
 .subMinor {
     height: 100%;
     /* border-bottom: 1px solid black; */
 }
+
 .subMinor h1 {
     font-size: 1rem;
     margin: 2% 0;
 }
+
 .subMinor p {
     font-weight: 300;
-    
     text-transform: uppercase;
 }
 
 .button {
     justify-content: right;
-    
 }
+
 .arrow {
-    
-    background-color: black;
+    background-color: var(--black);
     height: 1rem;
-    width:1rem;
+    width: 1rem;
     align-content: center;
 }
+
 .arrow .iconify {
     width: 100%;
     height: 100%;

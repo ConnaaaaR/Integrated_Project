@@ -1,5 +1,5 @@
 .container {
-    padding-top: 40px;
+    /* padding-top: 40px; */
     width: 1200px;
     margin: auto;
     display: grid;
@@ -7,7 +7,6 @@
     grid-column-gap: 2em;
     grid-row-gap: 1em;
     grid-row: auto;
-   
 }
 
 .nested {
@@ -15,9 +14,7 @@
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 1.5em;
     grid-row-gap: 0em;
-    
 }
-
 
 .width-1 {
     grid-column: span 1;
@@ -67,6 +64,6 @@
     grid-column: span 12;
 }
 
-.flex{
+.flex {
     display: flex;
 }
