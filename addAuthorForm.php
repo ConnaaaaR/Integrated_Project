@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/form.css">
     <!-- Google Fonts  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,28 +21,49 @@
     <title>WORLD NEWS | Add New Author</title>
 </head>
 <body>
+
     <div class="container">
-        <div class="width-12">
-            <h1>Add a new author</h1>
-            <form method="post" action="addAuthor.php">
-                <div>
+    <!-- Navigation Bar -->
+    <div class=" width-12 navCont nested">
+        <button class="width-2 navButtons"><a href="index.php">HOME</a></button>
+        <button class="width-2 navButtons"><a href="">UPDATE</a></button>
+        <button class="width-2 navButtons"><a href="">DELETE</a></button>
+        <button class="width-2 navButtons"><a href="">CREATE</a></button>
+        <button class="width-2 navButtons"><a href="addAuthorForm.php">ADD AUTHOR</a></button>
+    </div>
+    <!-- Logo and Subtitle -->
+    <div class="width-12 logo"> <h1>WORLD NEWS</h1> </div>
+    <h2 class='width-12'> <b>Add a new author</b> </h2>
+
+    <!-- Form Start -->
+        <div class="width-12 nested">
+            <form method="POST" action="addAuthor.php" class="width-12 nested">
+                <!-- First Name -->
+                <div class= "width-12 margin-t20">
                     <label>First Name</label><br>
-                    <input type="text" name="first_name">
+                    <input id="first_name"type="text" name="first_name" class="textInput">
+                    <div id="first_name_error"></div>
                 </div>
-                <div>
+                <!-- Last Name -->
+                <div class= "width-12 margin-t20">
                     <label>Last Name</label><br>
-                    <input type="text" name="last_name">
+                    <input id="last_name" type="text" name="last_name" class="textInput">
+                    <div id="last_name_error"></div>
                 </div>
-                <div>
+                <!-- Author URL -->
+                <div class= "width-12 margin-t20">
                     <label>Link</label><br>
-                    <input type="text" name="link">
+                    <input  id="author_link" type="text" name="author_link" class="textInput">
+                    <div id="author_link_error"></div>
                 </div>
-                    <a href="index.php">Cancel</a>
-                    <input type="submit">
+                <!-- Cancel / Submit -->
+                <input type="button" class="formButton width-3 margin-t20" value="Cancel"></button>
+                <input id="submit_btn" type="submit" class="formButton width-3 margin-t20" >
             </form>
         </div>
+    <!-- Form End -->
     </div>
     
-
+<script src="js/author_validate.js"></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 <?php
     require_once 'classes/DBConnector.php';
-    require_once 'utils/utils.php';
+    // utils.php is an aggregation of function I made for this site.
+    require_once 'utils/utils.php'; 
+
+
     //----------------------------------
     // retreive stories
     //----------------------------------
@@ -64,7 +67,7 @@
 </head>
 <body>
     <div class="container">
-    <!-- nav bar -->
+    <!-- Navigation Bar -->
     <div class=" width-12 navCont nested">
         <button class="width-2 navButtons"><a href="#">HOME</a></button>
         <button class="width-2 navButtons"><a href="">UPDATE</a></button>
@@ -72,9 +75,9 @@
         <button class="width-2 navButtons"><a href="">CREATE</a></button>
         <button class="width-2 navButtons"><a href="addAuthorForm.php">ADD AUTHOR</a></button>
     </div>
-    <!-- WN logo -->
+    <!-- Logo -->
     <div class="width-12 logo"> <h1>WORLD NEWS</h1> </div>
-    <!-- main headline -->
+    <!-- Main Headline -->
     <?php foreach($largeStories as $largeStory){ ?>
         <div class="width-8 headline nested">
             <div class="width-12 story">
@@ -96,8 +99,8 @@
                 
             </div>
             <?php } ?>
-        <!-- end main headline -->
-        <!-- medium stories -->
+        <!-- End Main Headline -->
+        <!-- Medium Stories -->
         <?php
             foreach($medStories as $medStory){
         ?>
@@ -116,8 +119,8 @@
             }
         ?>
         </div>
-        <!-- end medium stories -->
-        <!-- sidebar -->
+        <!-- End Medium Stories -->
+        <!-- Side Stories -->
         <div class="width-4 nested">
             <div class="width-12">
                 <!-- Category & banner -->
@@ -127,11 +130,11 @@
             </div>
 
 
+            <!-- Get Stories From Category World -->
             <?php
                 foreach($worldStories as $worldStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
                 <h3 class="artLink"><a href="article.php?id=<?= $worldStory->id?>"><?= $worldStory->short_headline ?></a></h3>
                 <!-- Date w/ formatting -->
@@ -143,44 +146,41 @@
                 }
             ?>
 
+
+            <!-- Get Stories From Category COVID-->
             <div class="width-12">
                 <!-- Category & banner -->
                 <div class="banner">
                     <div class="category"><p>COVID</p></div>
                 </div>
             </div>
-
-
             <?php
                 foreach($covidStories as $covidStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
                 <h3 class="artLink"><a href="article.php?id=<?= $covidStory->id?>"><?= $covidStory ->short_headline ?></a></h3 class="artLink">
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($covidStory)?></p>
                 </div>
-                
             </div> 
             <?php
                 }
             ?>
 
+
+            <!-- Get Stories From Category Economy-->
             <div class="width-12">
                 <!-- Category & banner -->
                 <div class="banner">
                     <div class="category"><p>Economy</p></div>
                 </div>
             </div>
-
-
             <?php
                 foreach($economyStories as $economyStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
                 <h3 class="artLink"><a  href="article.php?id=<?= $economyStory->id?>"><?= $economyStory ->short_headline ?></a></h3 class="artLink">
                 <!-- Date w/ formatting -->
@@ -193,19 +193,17 @@
             ?>
 
 
+            <!-- Get Stories From Category Science-->
             <div class="width-12">
                 <!-- Category & banner -->
                 <div class="banner">
                     <div class="category"><p>Science</p></div>
                 </div>
             </div>
-
-
             <?php
                 foreach($scienceStories as $scienceStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
                 <h3 class="artLink"><a href="article.php?id=<?= $scienceStory->id?>"><?= $scienceStory ->short_headline ?></a></h3>
                 <!-- Date w/ formatting -->
@@ -216,11 +214,8 @@
             <?php
                 }
             ?>
-
-
-
         </div>
+        <!-- End Side Stories -->
     </div>
-   
 </body>
 </html>

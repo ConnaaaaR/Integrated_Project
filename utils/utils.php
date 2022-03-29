@@ -1,7 +1,9 @@
 <?php
+    // This file contains functions that I have created
+    // to fufil formatting or other requirements for my design.
 
     //----------------------------------
-    // Returns current date
+    // Returns current date in an abbreviated format (used in the browser tab)
     //----------------------------------
     function tabDate(){
         date_default_timezone_set('Europe/Dublin');
@@ -10,12 +12,15 @@
 
 
     //----------------------------------
-    // Format date
+    // Format date (Long form date for use in the Headline article and articles.php)
     //----------------------------------
     function setDate($elementId){
+        //Must be given whole table as obj. Date and Time MUST be separate in table.
         $formatDate = strtotime($elementId->date);
         return date('l, j F', $formatDate);
     }
+
+
     //----------------------------------
     // Returns category from Id
     //----------------------------------
@@ -34,6 +39,8 @@
             echo "error: " . $e->getMessage();
         }
     }
+
+
     //----------------------------------
     // Returns combined author name
     //----------------------------------

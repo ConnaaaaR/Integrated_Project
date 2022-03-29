@@ -32,6 +32,28 @@ p {
     font-size: 14px;
 }
 
+
+/* prettier-ignore
+//////////////////////////////
+        Util Classes
+////////////////////////////// 
+*/
+
+.center {
+    justify-content: center;
+}
+
+.margin-t20 {
+    margin-top: 20px;
+}
+
+
+/* prettier-ignore
+//////////////////////////////
+       Util Classes End
+////////////////////////////// 
+*/
+
 .navCont {
     /* background-color: white; */
     height: 40px;
@@ -44,7 +66,7 @@ p {
     color: white;
     font-weight: 600;
     font-style: normal;
-    font-size: 11px;
+    font-size: 14px;
     border: none;
     border-radius: 0 0 8px 0;
 }
@@ -52,7 +74,8 @@ p {
 .navButtons:hover {
     background-color: white;
     color: var(--black);
-    transition: background-color 0.15s;
+    transition: background-color 0.3s;
+    border: 2px solid var(--black);
 }
 
 .logo {
@@ -102,22 +125,6 @@ p {
     text-transform: uppercase;
     margin-left: 5px;
 }
-
-
-/* .minor {
-    height:  20%;
-    border-bottom: 1px solid black;
-} */
-
-
-/* .minor h1 {
-    font-size: 1rem;
-    margin: 2% 0;
-}
-.minor p {
-    font-weight: 300;
-    text-transform: uppercase;
-} */
 
 .subMinor {
     height: 100%;
