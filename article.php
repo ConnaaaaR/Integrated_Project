@@ -9,7 +9,7 @@ try{
     }
 
 }
-catch(Exeption $e){
+catch(Exception $e){
     die("Exception: ".$e-> getMessage());
 }
 

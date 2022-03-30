@@ -4,6 +4,7 @@
 
 body {
     font-family: "Roboto", sans-serif;
+    color: var(--black);
 }
 
 h1 {
@@ -54,14 +55,17 @@ p {
 ////////////////////////////// 
 */
 
+
+/* Nav Bar Classes */
+
 .navCont {
-    /* background-color: white; */
     height: 40px;
     border-top: 5px solid var(--black);
-    /* margin: 5px 0 0px 0; */
 }
 
 .navButtons {
+    padding-top: 5px;
+    text-align: center;
     background-color: var(--black);
     color: white;
     font-weight: 600;
@@ -69,6 +73,7 @@ p {
     font-size: 14px;
     border: none;
     border-radius: 0 0 8px 0;
+    text-transform: uppercase;
 }
 
 .navButtons:hover {
@@ -76,12 +81,16 @@ p {
     color: var(--black);
     transition: background-color 0.3s;
     border: 2px solid var(--black);
+    border-top: 0;
 }
 
 .logo {
     font-size: 2rem;
     margin-top: 0;
 }
+
+
+/* Article classes */
 
 .story {
     margin-bottom: 10px;
@@ -104,6 +113,9 @@ p {
     font-weight: 300;
     font-size: 12px;
 }
+
+
+/* Category banner classes */
 
 .banner {
     background-color: var(--black);
@@ -143,16 +155,4 @@ p {
 
 .button {
     justify-content: right;
-}
-
-.arrow {
-    background-color: var(--black);
-    height: 1rem;
-    width: 1rem;
-    align-content: center;
-}
-
-.arrow .iconify {
-    width: 100%;
-    height: 100%;
 }

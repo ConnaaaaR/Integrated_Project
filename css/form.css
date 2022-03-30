@@ -2,13 +2,6 @@
     --black: rgb(20, 20, 20);
 }
 
-input {
-    width: 100%;
-    height: 4rem;
-    border: none;
-    border-radius: 4px;
-}
-
 input:focus-visible {
     outline: auto 1px var(--black);
 }
@@ -26,21 +19,55 @@ label {
     border-radius: 0 4px 0 0;
 }
 
+select {
+    outline: 2px solid var(--black);
+    cursor: pointer;
+    width: 100%;
+    height: 4rem;
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 20px;
+}
+
+select:focus {
+    outline: 4px solid var(--black);
+}
+
 .textInput {
-    border-top: 2px solid var(--black);
+    outline: 2px solid var(--black);
     font-size: 24px;
+    width: 100%;
+    height: 4rem;
+    border: none;
+    border-radius: 4px;
+}
+
+.textInput:focus-visible {
+    outline: 4px solid var(--black);
 }
 
 .formButton {
-    cursor: pointer;
     background-color: var(--black);
     color: white;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 20px;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    justify-content: left;
+    border-radius: 4px;
+    border: 2px solid var(--black);
+    cursor: pointer;
 }
 
 .formButton:hover {
-    cursor: pointer;
     background-color: white;
     color: var(--black);
     transition: background-color 0.3s;
-    border: 2px solid var(--black);
 }

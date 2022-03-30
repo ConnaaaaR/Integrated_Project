@@ -20,7 +20,13 @@
         return date('l, j F', $formatDate);
     }
 
-
+    //----------------------------------
+    // Returns the current London time once, when ran
+    //----------------------------------
+    function getCurrentTime(){
+        $time = date("H:i");
+        return $time;
+    }
     //----------------------------------
     // Returns category from Id
     //----------------------------------

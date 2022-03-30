@@ -69,11 +69,11 @@
     <div class="container">
     <!-- Navigation Bar -->
     <div class=" width-12 navCont nested">
-        <button class="width-2 navButtons"><a href="#">HOME</a></button>
-        <button class="width-2 navButtons"><a href="">UPDATE</a></button>
-        <button class="width-2 navButtons"><a href="">DELETE</a></button>
-        <button class="width-2 navButtons"><a href="">CREATE</a></button>
-        <button class="width-2 navButtons"><a href="addAuthorForm.php">ADD AUTHOR</a></button>
+        <a class="width-2 navButtons" href="index.php">HOME</a>
+        <a class="width-2 navButtons" href="">UPDATE</a></button>
+        <a class="width-2 navButtons" href="">DELETE</a></button>
+        <a class="width-2 navButtons" href="createStoryForm.php">CREATE</a></button>
+        <a class="width-2 navButtons" href="addAuthorForm.php">ADD AUTHOR</a></button>
     </div>
     <!-- Logo -->
     <div class="width-12 logo"> <h1>WORLD NEWS</h1> </div>
