@@ -72,8 +72,8 @@
         <a class="width-2 navButtons" href="index.php">HOME</a>
         <a class="width-2 navButtons" href="">UPDATE</a></button>
         <a class="width-2 navButtons" href="">DELETE</a></button>
-        <a class="width-2 navButtons" href="createStoryForm.php">CREATE</a></button>
-        <a class="width-2 navButtons" href="addAuthorForm.php">ADD AUTHOR</a></button>
+        <a class="width-2 navButtons" href="createStoryForm.php">create article</a></button>
+        <a class="width-2 navButtons" href="addAuthorForm.php">add author</a></button>
     </div>
     <!-- Logo -->
     <div class="width-12 logo"> <h1>WORLD NEWS</h1> </div>
@@ -86,7 +86,7 @@
                     <div class="category"><p><?= getCategory($largeStory->genre_id)?></p></div>
                 </div>
                 <h1 class="artLink"> <a href="article.php?id=<?= $largeStory->id ?>"><?= $largeStory->headline ?></a></h1>
-                <h2><?= $largeStory->summary ?></h2>
+                <h2><?=nl2br($largeStory->summary) ?></h2>
                 <div class="nameDate">
                     <div class="name">
                         <p>by <?= getAuthor($largeStory->writer_id) ?> &nbsp;•&nbsp;</p>

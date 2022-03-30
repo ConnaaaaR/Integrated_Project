@@ -9,6 +9,12 @@ const TEXT_REGEX = /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/;
 const URL_REGEX =
     /^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/im;
 
+// Date REGEX from https://stackoverflow.com/questions/22061723/regex-date-validation-for-yyyy-mm-dd
+const DATE_REGEX = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+
+// Time REGEX from https://stackoverflow.com/questions/43038769/regex-for-24-hour-time
+const TIME_REGEX = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+
 //------------------------------------
 // Get input fields
 //------------------------------------
@@ -57,7 +63,7 @@ let error = false;
 function resetValues() {
     error = false;
     headlineError.innerHTML = "";
-    short_headlineError.innerHTML = "";
+    shortHeadlineError.innerHTML = "";
     subtitleError.innerHTML = "";
 }
 
@@ -82,26 +88,66 @@ function onSubmitForm(event) {
 
     // Validate headline
     if (headlineInput.value == "") {
-        inputErrors(headlineError, "The first headline field is required.");
-    } else if (!regexValid(NAME_REGEX, headlineInput.value)) {
-        inputErrors(headlineError, "Only letters or spaces are allowed.");
+        inputErrors(headlineError, "The headline field is required.");
+    } else if (!regexValid(TEXT_REGEX, headlineInput.value)) {
+        inputErrors(
+            headlineError,
+            "Only letters, spaces and common punctuation are allowed."
+        );
     }
 
     //Validate short headline
     if (shortHeadlineInput.value == "") {
+        inputErrors(shortHeadlineError, "The short headline field is required.");
+    } else if (!regexValid(TEXT_REGEX, shortHeadlineInput.value)) {
         inputErrors(
             shortHeadlineError,
-            "The last short headline field is required."
+            "Only letters, spaces and common punctuation are allowed."
         );
-    } else if (!regexValid(NAME_REGEX, shortHeadlineInput.value)) {
-        inputErrors(shortHeadlineError, "Only letters or spaces are allowed.");
     }
 
     //Validate subtitle
     if (subtitleInput.value == "") {
         inputErrors(subtitleError, "The subtitle is required");
-    } else if (!regexValid(URL_REGEX, subtitleInput.value)) {
-        inputErrors(subtitleError, "URL should be in standard domain formats");
+    } else if (!regexValid(TEXT_REGEX, subtitleInput.value)) {
+        inputErrors(
+            subtitleError,
+            "Only letters, spaces and common punctuation are allowed."
+        );
+    }
+
+    //Validate article
+    if (articleInput.value == "") {
+        inputErrors(articleInputError, "The article is required");
+    } else if (!regexValid(TEXT_REGEX, articleInput.value)) {
+        inputErrors(
+            articleInputError,
+            "Only letters, spaces and common punctuation are allowed."
+        );
+    }
+
+    //Validate summary
+    if (summaryInput.value == "") {
+        inputErrors(summaryInputError, "The summary is required");
+    } else if (!regexValid(TEXT_REGEX, summaryInput.value)) {
+        inputErrors(
+            summaryInputError,
+            "Only letters, spaces and common punctuation are allowed."
+        );
+    }
+
+    //Validate date
+    if (dateInput.value == "") {
+        inputErrors(dateInputError, "The date is required");
+    } else if (!regexValid(DATE_REGEX, dateInput.value)) {
+        inputErrors(dateInputError, "Incorrect Date Format! YYYY-MM-DD");
+    }
+
+    //Validate time
+    if (timeInput.value == "") {
+        inputErrors(timeInputError, "The time is required");
+    } else if (!regexValid(TIME_REGEX, timeInput.value)) {
+        inputErrors(timeInputError, "Incorrect Time Format! HH:MM (24Hr)");
     }
 
     if (error) {

@@ -71,7 +71,7 @@ catch(Exeption $e){
                 <h2><?= $story->subtitle ?></h2>
                 <div class="nameDate">
                     <div class="name">
-                        <p>by <?= getAuthor($story->id) ?> &nbsp;•&nbsp;</p>
+                        <p>by <?= getAuthor($story->writer_id) ?> &nbsp;•&nbsp;</p>
                     </div>
                     <div class="date">
                         <p><?= setDate($story) ?></p>

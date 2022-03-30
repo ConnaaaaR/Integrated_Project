@@ -71,7 +71,7 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
 
     <!-- Form Start -->
         <div class="width-12 nested">
-            <form method="POST" action="" class="width-12 nested">
+            <form method="POST" action="createStory.php" class="width-12 nested">
             <?php
             // echo "<pre>";
             // print_r($authors);
@@ -101,7 +101,8 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                 <!-- Article -->
                 <div class= "width-12 margin-t20">
                     <label>Article</label><br>
-                    <input  id="article" type="text" name="article" class="textInput">
+                    <textarea id="article" type="text" name="article"class="textInput largeInput" ></textarea>
+                    <!-- <input  id="article" type="text" name="article" class="textInput"> -->
                     <div id="article_error"></div>
                 </div>
                 
