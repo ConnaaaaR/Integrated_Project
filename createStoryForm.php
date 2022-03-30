@@ -52,7 +52,7 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
     <link rel="icon" href="icon.svg">
 
-    <title>WORLD NEWS | Add New Author</title>
+    <title>WORLD NEWS | Create a new article</title>
 </head>
 <body>
 
