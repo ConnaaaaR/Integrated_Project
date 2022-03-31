@@ -11,7 +11,7 @@
 
     // Large Story
     try{
-        $largeStories = Get::all('articles', 1);
+        $largeStories = Get::allOrderBy('articles','date DESC', 1);
     }
     catch(Exeption $e){
         die("Exception: ".$e-> getMessage());
@@ -29,10 +29,11 @@
     try{
         // $sideStories = Get::all('articles', 13);
 
-        $worldStories = Get::byCategory('World',3);
-        $covidStories = Get::byCategory('COVID',3);
-        $economyStories = Get::byCategory('Economy',3);
-        $scienceStories = Get::byCategory('Science',3);
+        $worldStories = Get::byCategoryOrderBy('World','date DESC',3);
+        $covidStories = Get::byCategoryOrderBy('COVID','date DESC',3);
+        $economyStories = Get::byCategoryOrderBy('Economy','date DESC',3);
+        $scienceStories = Get::byCategoryOrderBy('Science','date DESC',3);
+        $politicsStories = Get::byCategoryOrderBy('Politics','date DESC',3);
         
         //$sideStories = Get::byCategory('Economy');
     }
@@ -70,8 +71,6 @@
     <!-- Navigation Bar -->
     <div class=" width-12 navCont nested">
         <a class="width-2 navButtons" href="index.php">HOME</a>
-        <a class="width-2 navButtons" href="">UPDATE</a></button>
-        <a class="width-2 navButtons" href="">DELETE</a></button>
         <a class="width-2 navButtons" href="createStoryForm.php">create article</a></button>
         <a class="width-2 navButtons" href="addAuthorForm.php">add author</a></button>
     </div>
@@ -86,7 +85,7 @@
                     <div class="category"><p><?= getCategory($largeStory->genre_id)?></p></div>
                 </div>
                 <h1 class="artLink"> <a href="article.php?id=<?= $largeStory->id ?>"><?= $largeStory->headline ?></a></h1>
-                <h2><?=nl2br($largeStory->summary) ?></h2>
+                <h3><?=nl2br($largeStory->subtitle) ?></h3>
                 <div class="nameDate">
                     <div class="name">
                         <p>by <?= getAuthor($largeStory->writer_id) ?> &nbsp;•&nbsp;</p>
@@ -95,7 +94,7 @@
                         <p><?= setDate($largeStory) ?></p>
                     </div>
                 </div>
-                <p><?= $largeStory->article ?></p>
+                <p><?= nl2br($largeStory->summary) ?></p>
                 
             </div>
             <?php } ?>
@@ -108,7 +107,7 @@
                 <div class="banner">
                     <div class="category"><p><?= getCategory($medStory->genre_id) ?></p></div>
                 </div>
-                <h3 class="artLink"> <a href="article.php?id=<?= $medStory->id ?>"> <?= $medStory->headline ?></a></h3>
+                <h2 class="artLink"> <a href="article.php?id=<?= $medStory->id ?>"> <?= $medStory->headline ?></a></h2>
                 <div class="date">
                     <p><?= setDate($medStory) ?></p>
                 </div>
@@ -122,15 +121,13 @@
         <!-- End Medium Stories -->
         <!-- Side Stories -->
         <div class="width-4 nested">
+            <!-- Get Stories From Category World -->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>World</p></div>
                 </div>
             </div>
-
-
-            <!-- Get Stories From Category World -->
             <?php
                 foreach($worldStories as $worldStory){
             ?>
@@ -149,7 +146,7 @@
 
             <!-- Get Stories From Category COVID-->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>COVID</p></div>
                 </div>
@@ -172,7 +169,7 @@
 
             <!-- Get Stories From Category Economy-->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>Economy</p></div>
                 </div>
@@ -195,7 +192,7 @@
 
             <!-- Get Stories From Category Science-->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>Science</p></div>
                 </div>
@@ -209,6 +206,28 @@
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($scienceStory)?></p>
+                </div>
+            </div> 
+            <?php
+                }
+            ?>
+
+            <!-- Get Stories From Category Politics-->
+            <div class="width-12">
+                <!-- Category & Banner -->
+                <div class="banner">
+                    <div class="category"><p>Politics</p></div>
+                </div>
+            </div>
+            <?php
+                foreach($politicsStories as $politicsStory){
+            ?>
+            <div class="width-12">
+                <!-- Headline -->
+                <h3 class="artLink"><a href="article.php?id=<?= $politicsStory->id?>"><?= $politicsStory ->short_headline ?></a></h3>
+                <!-- Date w/ formatting -->
+                <div class="date">
+                    <p><?= setDate($politicsStory)?></p>
                 </div>
             </div> 
             <?php

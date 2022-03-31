@@ -1,4 +1,25 @@
+<?php
+require_once 'validation.php';
+require_once 'classes/DBConnector.php';
 
+session_start();
+if (isset($_SESSION["author"]) && isset($_SESSION["errors"])) {
+    $data = $_SESSION["author"];
+    $errors = $_SESSION["errors"];
+}else{
+    $data = [];
+    $errors = [];
+
+}
+echo "<pre>\$data = ";
+print_r($data);
+echo "</pre>";
+
+echo "<pre>\$errors = ";
+print_r($errors);
+echo "</pre>";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,20 +62,20 @@
                 <!-- First Name -->
                 <div class= "width-12 margin-t20">
                     <label>First Name</label><br>
-                    <input id="first_name"type="text" name="first_name" class="textInput">
-                    <div id="first_name_error"></div>
+                    <input id="first_name"type="text" name="first_name" class="textInput" value="<?php if (isset($data["first_name"])) echo $data["first_name"];?>">
+                    <div class="error" id="first_name_error"><?php if (isset($errors["first_name"])) echo $errors["first_name"];?></div>
                 </div>
                 <!-- Last Name -->
                 <div class= "width-12 margin-t20">
                     <label>Last Name</label><br>
-                    <input id="last_name" type="text" name="last_name" class="textInput">
-                    <div id="last_name_error"></div>
+                    <input id="last_name" type="text" name="last_name" class="textInput" value="<?php if (isset($data["last_name"])) echo $data["last_name"];?>">
+                    <div class="error" id="last_name_error"><?php if (isset($errors["last_name"])) echo $errors["last_name"];?></div>
                 </div>
                 <!-- Author URL -->
                 <div class= "width-12 margin-t20">
                     <label>Link</label><br>
-                    <input  id="author_link" type="text" name="author_link" class="textInput">
-                    <div id="author_link_error"></div>
+                    <input  id="author_link" type="text" name="author_link" class="textInput" value="<?php if (isset($data["author_link"])) echo $data["author_link"];?>">
+                    <div class="error" id="author_link_error"><?php if (isset($errors["author_link"])) echo $errors["author_link"];?></div>
                 </div>
                 <!-- Cancel / Submit -->
                 <input type="button" class="formButton width-3 margin-t20" value="Cancel"></button>
@@ -67,3 +88,9 @@
 <script src="js/author_validate.js"></script>
 </body>
 </html>
+<?php
+    if(isset($_SESSION["data"]) && isset($_SESSION["errors"])){
+        unset($_SESSION["data"]);
+        unset($_SESSION["errors"]);
+    }
+ ?>

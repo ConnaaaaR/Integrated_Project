@@ -2,12 +2,10 @@
 // REGEX Expressions
 //------------------------------------
 
-// Text REGEX from: https://stackoverflow.com/questions/10105584/regex-in-javascript-allow-only-letters-comma-and-punctuation
-const TEXT_REGEX = /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/;
-
-// URL REGEX Generated from https://regexr.com/39nr7
-const URL_REGEX =
-    /^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?$/im;
+// Self made Regex, probably sucks. Regular expressions are confusing. This took like 2 hours
+// because of The Guardian using special punctuation -_-
+// probably will use str.replace() in the future, and just replace the problematic symbols.
+const TEXT_REGEX = /^[a-zA-Z0-9áéí'‘’%.;:,!?"“”\-\/[\]()\… 	—\r\n€£$–]*$/;
 
 // Date REGEX from https://stackoverflow.com/questions/22061723/regex-date-validation-for-yyyy-mm-dd
 const DATE_REGEX = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
@@ -121,6 +119,7 @@ function onSubmitForm(event) {
         inputErrors(articleInputError, "The article is required");
     } else if (!regexValid(TEXT_REGEX, articleInput.value)) {
         inputErrors(
+            // This doesn't work for some unknown reason, i suspect it is due to the element being a textarea??
             articleInputError,
             "Only letters, spaces and common punctuation are allowed."
         );

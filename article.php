@@ -1,4 +1,5 @@
 <?php 
+// header("Content-Type: text/html; charset=ISO-8859-1");
 require_once 'classes/DBConnector.php';
 require_once 'utils/utils.php';
 
@@ -13,13 +14,15 @@ catch(Exception $e){
     die("Exception: ".$e-> getMessage());
 }
 
-try{
+  // Small stories
+  try{
     // $sideStories = Get::all('articles', 13);
 
-    $worldStories = Get::byCategory('World',3);
-    $covidStories = Get::byCategory('COVID',3);
-    $economyStories = Get::byCategory('Economy',3);
-    $scienceStories = Get::byCategory('Science',3);
+    $worldStories = Get::byCategoryOrderBy('World','date DESC',3);
+    $covidStories = Get::byCategoryOrderBy('COVID','date DESC',3);
+    $economyStories = Get::byCategoryOrderBy('Economy','date DESC',3);
+    $scienceStories = Get::byCategoryOrderBy('Science','date DESC',3);
+    $politicsStories = Get::byCategoryOrderBy('Politics','date DESC',3);
     
     //$sideStories = Get::byCategory('Economy');
 }
@@ -50,50 +53,56 @@ catch(Exeption $e){
     <title>World News | <?= $story->headline ?></title>
 </head>
 <body> <div class="container">
-    <!-- nav bar -->
+    <!-- Navigation Bar -->
     <div class=" width-12 navCont nested">
-        <button class="width-2 navButtons"><a href="#">HOME</a></button>
-        <button class="width-2 navButtons"><a href="">UPDATE</a></button>
-        <button class="width-2 navButtons"><a href="">DELETE</a></button>
-        <button class="width-2 navButtons"><a href="">CREATE</a></button>
-        <button class="width-2 navButtons"><a href="addAuthorForm.php">ADD AUTHOR</a></button>
+        <a class="width-2 navButtons" href="index.php">HOME</a>
+        <a class="width-2 navButtons" href="updateArticleForm.php?id=<?= $story->id?>">UPDATE</a></button>
+        <a class="width-2 navButtons" href="">DELETE</a></button>
+        <a class="width-2 navButtons" href="createStoryForm.php">create article</a></button>
+        <a class="width-2 navButtons" href="addAuthorForm.php">add author</a></button>
     </div>
-    <!-- WN logo -->
-    <div class="width-5 logo"> <a href="index.php"> <h1>WORLD NEWS</h1></a> </div>
-    <!-- main headline -->
-        <div class="width-12 headline nested">
-            <div class="width-8">
-                
+
+    <!-- Logo -->
+    <div class="width-12 logo"> <h1>WORLD NEWS</h1> </div>
+    <!-- Main Headline -->
+        <div class="width-12 headline  nested">
+
+            <div class="width-8 ">
                 <div class="banner">
                     <div class="category"><p><?= getCategory($story->genre_id)?></p></div>
                 </div>
                 <h1> <?= $story->headline ?></h1>
                 <h2><?= $story->subtitle ?></h2>
                 <div class="nameDate">
+                    <p>by&nbsp;</p>
                     <div class="name">
-                        <p>by <?= getAuthor($story->writer_id) ?> &nbsp;•&nbsp;</p>
+                        <p><?= getAuthor($story->writer_id) ?> </p>
                     </div>
                     <div class="date">
-                        <p><?= setDate($story) ?></p>
+                        <p>&nbsp;•&nbsp;<?= setDate($story) ?>&nbsp;•&nbsp;</p>
+                    </div>
+                    <div class="date">
+                        <p><?= setDate($story, False) ?></p>
                     </div>
                 </div>
                 <!-- sets the \r\n to new line in html format -->
                 <p><?= nl2br($story->article);?></p>
             </div>
-            <div class="width-4 nested">
+
+
+        <!-- Side Stories -->
+        <div class="width-4 nested">
+            <!-- Get Stories From Category World -->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>World</p></div>
                 </div>
             </div>
-
-
             <?php
                 foreach($worldStories as $worldStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
                 <h3 class="artLink"><a href="article.php?id=<?= $worldStory->id?>"><?= $worldStory->short_headline ?></a></h3>
                 <!-- Date w/ formatting -->
@@ -105,46 +114,43 @@ catch(Exeption $e){
                 }
             ?>
 
+
+            <!-- Get Stories From Category COVID-->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>COVID</p></div>
                 </div>
             </div>
-
-
             <?php
                 foreach($covidStories as $covidStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
-                <h3 class="artLink"><a href="article.php?id=<?= $covidStory->id?>"><?= $covidStory ->short_headline ?></a></h3>
+                <h3 class="artLink"><a href="article.php?id=<?= $covidStory->id?>"><?= $covidStory ->short_headline ?></a></h3 class="artLink">
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($covidStory)?></p>
                 </div>
-                
             </div> 
             <?php
                 }
             ?>
 
+
+            <!-- Get Stories From Category Economy-->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>Economy</p></div>
                 </div>
             </div>
-
-
             <?php
                 foreach($economyStories as $economyStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
-                <h3 class="artLink"><a  href="article.php?id=<?= $economyStory->id?>"><?= $economyStory ->short_headline ?></a></h3>
+                <h3 class="artLink"><a  href="article.php?id=<?= $economyStory->id?>"><?= $economyStory ->short_headline ?></a></h3 class="artLink">
                 <!-- Date w/ formatting -->
                 <div class="date">
                     <p><?= setDate($economyStory)?></p>
@@ -155,19 +161,17 @@ catch(Exeption $e){
             ?>
 
 
+            <!-- Get Stories From Category Science-->
             <div class="width-12">
-                <!-- Category & banner -->
+                <!-- Category & Banner -->
                 <div class="banner">
                     <div class="category"><p>Science</p></div>
                 </div>
             </div>
-
-
             <?php
                 foreach($scienceStories as $scienceStory){
             ?>
             <div class="width-12">
-               
                 <!-- Headline -->
                 <h3 class="artLink"><a href="article.php?id=<?= $scienceStory->id?>"><?= $scienceStory ->short_headline ?></a></h3>
                 <!-- Date w/ formatting -->
@@ -179,9 +183,29 @@ catch(Exeption $e){
                 }
             ?>
 
-
-
+            <!-- Get Stories From Category Politics-->
+            <div class="width-12">
+                <!-- Category & Banner -->
+                <div class="banner">
+                    <div class="category"><p>Politics</p></div>
+                </div>
+            </div>
+            <?php
+                foreach($politicsStories as $politicsStory){
+            ?>
+            <div class="width-12">
+                <!-- Headline -->
+                <h3 class="artLink"><a href="article.php?id=<?= $politicsStory->id?>"><?= $politicsStory ->short_headline ?></a></h3>
+                <!-- Date w/ formatting -->
+                <div class="date">
+                    <p><?= setDate($politicsStory)?></p>
+                </div>
+            </div> 
+            <?php
+                }
+            ?>
         </div>
+        <!-- End Side Stories -->
     </div>
         
     

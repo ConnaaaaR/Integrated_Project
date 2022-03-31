@@ -14,10 +14,19 @@
     //----------------------------------
     // Format date (Long form date for use in the Headline article and articles.php)
     //----------------------------------
-    function setDate($elementId){
+    function setDate($elementId, $date = True){
+        // Use the $date bool to switch between time and date, defaults to date
         //Must be given whole table as obj. Date and Time MUST be separate in table.
-        $formatDate = strtotime($elementId->date);
-        return date('l, j F', $formatDate);
+        if($date){
+            $formatDate = strtotime($elementId->date);
+            return date('l, j F', $formatDate);
+        }else{
+            $formatDate = strtotime($elementId->time);
+            return date('H:i', $formatDate);
+        }
+        
+
+        
     }
 
     //----------------------------------

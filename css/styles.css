@@ -1,5 +1,6 @@
 :root {
     --black: rgb(20, 20, 20);
+    scrollbar-width: none;
 }
 
 body {
@@ -7,21 +8,25 @@ body {
     color: var(--black);
 }
 
-h1 {
+h1,
+h2,
+h3 {
     font-family: "Merriweather", serif;
+}
+
+h1 {
     margin-top: 25px;
     line-height: 52px;
 }
 
 h2 {
-    margin-top: 20px;
-    font-weight: 300;
+    margin-top: 25px;
+    font-weight: 700;
     font-size: 21px;
     line-height: 25px;
 }
 
 h3 {
-    font-family: "Merriweather", serif;
     font-size: 18px;
     margin-top: 25px;
     font-weight: 700;
@@ -39,6 +44,10 @@ p {
         Util Classes
 ////////////////////////////// 
 */
+
+.error {
+    color: red;
+}
 
 .center {
     justify-content: center;
@@ -106,7 +115,7 @@ p {
 
 .name p {
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .date {

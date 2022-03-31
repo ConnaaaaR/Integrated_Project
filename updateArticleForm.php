@@ -1,11 +1,9 @@
 <?php
 require_once 'classes/DBConnector.php';
 require_once 'utils/utils.php';
-require_once 'validation.php';
 //session_start();
 
 //set data to $_session if session contains data, else set $data & $errors to empty arrays
-session_start();
 if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
     $data = $_SESSION["data"];
     $errors = $_SESSION["errors"];
@@ -14,26 +12,40 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
     $errors = [];
 
 }
-    try{
-        $authors = Get::All('writers');
-        
-        if(!$authors){
-            throw new Exception("Failed to retreive author IDs!");
-        }
-    }catch(Exception $e){
-        die("Exception: ".$e->getMessage());
+
+try{
+    $authors = Get::All('writers');
+    
+    if(!$authors){
+        throw new Exception("Failed to retreive author IDs!");
+    }
+}catch(Exception $e){
+    die("Exception: ".$e->getMessage());
+}
+
+try{
+    $genres = Get::All('genres');
+    
+    if(!$genres){
+        throw new Exception("Failed to retreive genre IDs!");
+    }
+}catch(Exception $e){
+    die("Exception: ".$e->getMessage());
+}
+
+
+try{
+    $story = Get::byId('articles', $_GET["id"]);
+    if(!$story){
+        throw new Exception("Failed to retrieve articles from id!");
     }
 
-    try{
-        $genres = Get::All('genres');
-        
-        if(!$genres){
-            throw new Exception("Failed to retreive genre IDs!");
-        }
-    }catch(Exception $e){
-        die("Exception: ".$e->getMessage());
-    }
-    
+    $time = strtotime($story->time);
+
+}
+catch(Exception $e){
+    die("Exception: ".$e-> getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,69 +74,71 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
     <!-- Navigation Bar -->
     <div class=" width-12 navCont nested">
         <a class="width-2 navButtons" href="index.php">HOME</a>
+        <a class="width-2 navButtons" href="">UPDATE</a></button>
+        <a class="width-2 navButtons" href="">DELETE</a></button>
+        <a class="width-2 navButtons" href="createStoryForm.php">create article</a></button>
         <a class="width-2 navButtons" href="addAuthorForm.php">add author</a></button>
     </div>
     <!-- Logo and Subtitle -->
     <div class="width-12 logo"> <h1>WORLD NEWS</h1> </div>
-    <h2 class='width-12'> <b>Add A New Article</b> </h2>
+    <h2 class='width-12'> <b>Update An Existing Article</b> </h2>
 
     <!-- Form Start -->
         <div class="width-12 nested">
-            <form method="POST" action="createStory.php" class="width-12 nested">
+            <form method="POST" action="updateStory.php?id=<?= $story->id?>" class="width-12 nested">
             <?php
             // echo "<pre>";
-            // print_r($authors);
+            // print_r($story);
             // echo "</pre>"
             ?>
                 <!-- Headline -->
                 <div class= "width-12 margin-t20">
                     <label>Headline</label><br>
-                    <input id="headline"type="text" name="headline" class="textInput" value="<?php if (isset($data["headline"])) echo $errors["headline"];?>">
-                    <div class="error" id="headline_error"><?php if (isset($errors["headline"])) echo $errors["headline"];?></div>
+                    <input id="headline"type="text" name="headline" class="textInput" value="<?= $story->headline ?>">
+                    <div id="headline_error"></div>
                 </div>
                 
                 <!-- Short Headline -->
                 <div class= "width-12 margin-t20">
                     <label>Short Headline</label><br>
-                    <input id="short_headline"type="text" name="short_headline" class="textInput" value="<?php if (isset($data["short_headline"])) echo $errors["short_headline"];?>">
-                    <div class="error" id="short_headline_error"><?php if (isset($errors["short_headline"])) echo $errors["short_headline"];?></div>
+                    <input id="short_headline"type="text" name="short_headline" class="textInput" value="<?= $story->short_headline ?>">
+                    <div id="short_headline_error"></div>
                 </div>
                 
                 <!-- Subtitle -->
                 <div class= "width-12 margin-t20">
                     <label>Subtitle</label><br>
-                    <input id="subtitle" type="text" name="subtitle" class="textInput" value="<?php if (isset($data["subtitle"])) echo $errors["subtitle"];?>">
-                    <div class="error" id="subtitle_error"><?php if (isset($errors["subtitle"])) echo $errors["subtitle"];?></div>
+                    <input id="subtitle" type="text" name="subtitle" class="textInput" value="<?= $story->subtitle ?>">
+                    <div id="subtitle_error"></div>
                 </div>
                 
                 <!-- Article -->
                 <div class= "width-12 margin-t20">
                     <label>Article</label><br>
-                    <textarea id="article" type="text" name="article"class="textInput largeInput"><?php if (isset($data["article"])) echo $errors["article"];?></textarea>
+                    <textarea id="article" type="text" name="article"class="textInput largeInput" value=""><?= $story->article?></textarea>
                     <!-- <input  id="article" type="text" name="article" class="textInput"> -->
-                    <div class="error" id="article_error"><?php if (isset($errors["article"])) echo $errors["article"];?></div>
+                    <div id="article_error"></div>
                 </div>
                 
                 <!-- Summary -->
                 <div class= "width-12 margin-t20">
                     <label>Summary</label><br>
-                    <textarea id="summary" type="text" name="summary" class="textInput largeInput" ><?php if (isset($data["summary"])) echo $errors["summary"];?></textarea>
-                    <!-- <input  id="summary" type="text" name="summary" class="textInput" > -->
-                    <div class="error" id="summary_error"><?php if (isset($errors["summary"])) echo $errors["summary"];?></div>
+                    <textarea id="summary" type="text" name="summary" class="textInput largeInput" value=""><?= $story->summary?></textarea>
+                    <div id="summary_error"></div>
                 </div>
                 
                 <!-- Date -->
                 <div class= "width-6 margin-t20">
                     <label>Date</label><br>
-                    <input  id="date" type="date" name="date" class="textInput">
-                    <div class="error" id="date_error"></div>
+                    <input  id="date" type="date" name="date" class="textInput"value="<?= $story->date  ?>">
+                    <div id="date_error"></div>
                 </div>
 
                 <!-- Time -->
                 <div class= "width-6 margin-t20">
                     <label>Time </label><br>
-                    <input  id="time" type="time" name="time" value="<?= getCurrentTime();?>" class="textInput">
-                    <div class="error" id="time_error"></div>
+                    <input  id="time" type="time" name="time" class="textInput" value="<?= date('H:i',$time)?>">
+                    <div id="time_error"></div>
                 </div>
 
                 <!-- Genre -->
@@ -136,7 +150,7 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                             <option 
                             value="<?= $genre->id ?>"
                             <?php 
-                            if(isset($data["genre"]) && $data["genre"] === $genre["id"]) echo "selected";
+                            if($genre->id === $story->genre_id) echo "selected";
                              ?>>
 
                             <?= $genre->name?>
@@ -144,7 +158,7 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="error" id="genre_error"></div>
+                    <div id="genre_error"></div>
                 </div>
 
                 <!-- Author -->
@@ -156,7 +170,7 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                             <option 
                             value="<?= $author->id ?>"
                             <?php 
-                            if(isset($data["author"]) && $data["author"] === $author["id"]) echo "selected";
+                            if($author->id === $story->writer_id) echo "selected";
                              ?>>
 
                             <?= getAuthor($author->id) ?>
@@ -164,7 +178,7 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="error" id="author_error"></div>
+                    <div id="author_error"></div>
                 </div>
 
                 <!-- Cancel / Submit -->
