@@ -2,7 +2,7 @@
 require_once 'classes/DBConnector.php';
 require_once 'utils/utils.php';
 require_once 'validation.php';
-//session_start();
+
 
 //set data to $_session if session contains data, else set $data & $errors to empty arrays
 session_start();
@@ -79,28 +79,28 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                 <!-- Headline -->
                 <div class= "width-12 margin-t20">
                     <label>Headline</label><br>
-                    <input id="headline"type="text" name="headline" class="textInput" value="<?php if (isset($data["headline"])) echo $errors["headline"];?>">
+                    <input id="headline"type="text" name="headline" class="textInput" value="<?php if (isset($data["headline"])) echo $data["headline"];?>">
                     <div class="error" id="headline_error"><?php if (isset($errors["headline"])) echo $errors["headline"];?></div>
                 </div>
                 
                 <!-- Short Headline -->
                 <div class= "width-12 margin-t20">
                     <label>Short Headline</label><br>
-                    <input id="short_headline"type="text" name="short_headline" class="textInput" value="<?php if (isset($data["short_headline"])) echo $errors["short_headline"];?>">
+                    <input id="short_headline"type="text" name="short_headline" class="textInput" value="<?php if (isset($data["short_headline"])) echo $data["short_headline"];?>">
                     <div class="error" id="short_headline_error"><?php if (isset($errors["short_headline"])) echo $errors["short_headline"];?></div>
                 </div>
                 
                 <!-- Subtitle -->
                 <div class= "width-12 margin-t20">
                     <label>Subtitle</label><br>
-                    <input id="subtitle" type="text" name="subtitle" class="textInput" value="<?php if (isset($data["subtitle"])) echo $errors["subtitle"];?>">
+                    <input id="subtitle" type="text" name="subtitle" class="textInput" value="<?php if (isset($data["subtitle"])) echo $data["subtitle"];?>">
                     <div class="error" id="subtitle_error"><?php if (isset($errors["subtitle"])) echo $errors["subtitle"];?></div>
                 </div>
                 
                 <!-- Article -->
                 <div class= "width-12 margin-t20">
                     <label>Article</label><br>
-                    <textarea id="article" type="text" name="article"class="textInput largeInput"><?php if (isset($data["article"])) echo $errors["article"];?></textarea>
+                    <textarea id="article" type="text" name="article"class="textInput largeInput"><?php if (isset($data["article"])) echo $data["article"];?></textarea>
                     <!-- <input  id="article" type="text" name="article" class="textInput"> -->
                     <div class="error" id="article_error"><?php if (isset($errors["article"])) echo $errors["article"];?></div>
                 </div>
@@ -108,7 +108,7 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                 <!-- Summary -->
                 <div class= "width-12 margin-t20">
                     <label>Summary</label><br>
-                    <textarea id="summary" type="text" name="summary" class="textInput largeInput" ><?php if (isset($data["summary"])) echo $errors["summary"];?></textarea>
+                    <textarea id="summary" type="text" name="summary" class="textInput largeInput" ><?php if (isset($data["summary"])) echo $data["summary"];?></textarea>
                     <!-- <input  id="summary" type="text" name="summary" class="textInput" > -->
                     <div class="error" id="summary_error"><?php if (isset($errors["summary"])) echo $errors["summary"];?></div>
                 </div>
@@ -123,10 +123,11 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                 <!-- Time -->
                 <div class= "width-6 margin-t20">
                     <label>Time </label><br>
-                    <input  id="time" type="time" name="time" value="<?= getCurrentTime();?>" class="textInput">
-                    <div class="error" id="time_error"></div>
+                    
+                    <input  id="time" type="time" name="time" value="<?php if(isset($data["time"])){echo $data["time"];}else{echo getCurrentTime();}?>" class="textInput">
+                    <div class="error" id="time_error"><?php if (isset($errors["time"])) echo $errors["time"];?></div>
                 </div>
-
+                
                 <!-- Genre -->
                 <div class= "width-6 margin-t20">
                     <label>Category</label><br>
@@ -134,17 +135,17 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
                         <select name="genre" id="genre">
                             <?php foreach($genres as $genre){ ?>
                             <option 
-                            value="<?= $genre->id ?>"
-                            <?php 
-                            if(isset($data["genre"]) && $data["genre"] === $genre["id"]) echo "selected";
-                             ?>>
+                            value="<?php 
+                            if(isset($data["genre"]) && $data["genre"] === $genre["id"]) {echo "selected";}else{echo $genre->id;}
+                             ?>">
+                            
 
                             <?= $genre->name?>
                             </option>
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="error" id="genre_error"></div>
+                    <div class="error" id="genre_error"><?php if (isset($errors["genre"])) echo $errors["genre"];?></div>
                 </div>
 
                 <!-- Author -->
@@ -178,3 +179,9 @@ if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
 <script src="js/story_validate.js"></script>
 </body>
 </html>
+<?php
+    if(isset($_SESSION["data"]) && isset($_SESSION["errors"])){
+        unset($_SESSION["data"]);
+        unset($_SESSION["errors"]);
+    }
+ ?>
