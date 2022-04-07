@@ -1,7 +1,7 @@
 <?php
 require_once 'classes/DBConnector.php';
 require_once 'utils/utils.php';
-//session_start();
+session_start();
 
 //set data to $_session if session contains data, else set $data & $errors to empty arrays
 if (isset($_SESSION["data"]) && isset($_SESSION["errors"])) {
@@ -69,7 +69,15 @@ catch(Exception $e){
     <title>WORLD NEWS | Create a new article</title>
 </head>
 <body>
+<?php
+echo "<pre>\$data = ";
+print_r($data);
+echo "</pre>";
 
+echo "<pre>\$errors = ";
+print_r($errors);
+echo "</pre>";
+?>
     <div class="container">
     <!-- Navigation Bar -->
     <div class=" width-12 navCont nested">
@@ -148,18 +156,19 @@ catch(Exception $e){
                         <select name="genre" id="genre">
                             <?php foreach($genres as $genre){ ?>
                             <option 
-                            value="<?= $genre->id ?>"
-                            <?php 
-                            if($genre->id === $story->genre_id) echo "selected";
-                             ?>>
+                            value="<?php 
+                            if(isset($data["genre"]) && $data["genre"] === $genre["id"]) {echo "selected";}else{echo $genre->id;}
+                             ?>">
+                            
 
                             <?= $genre->name?>
                             </option>
                             <?php } ?>
                         </select>
                     </div>
-                    <div id="genre_error"></div>
+                    <div class="error" id="genre_error"><?php if (isset($errors["genre"])) echo $errors["genre"];?></div>
                 </div>
+
 
                 <!-- Author -->
                 <div class= "width-6 margin-t20">
@@ -192,3 +201,9 @@ catch(Exception $e){
 <script src="js/story_validate.js"></script>
 </body>
 </html>
+<?php
+    if(isset($_SESSION["data"]) && isset($_SESSION["errors"])){
+        unset($_SESSION["data"]);
+        unset($_SESSION["errors"]);
+    }
+ ?>

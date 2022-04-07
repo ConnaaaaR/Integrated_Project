@@ -47,9 +47,7 @@ echo "</pre>";
     <!-- Navigation Bar -->
     <div class=" width-12 navCont nested">
         <a class="width-2 navButtons" href="index.php">HOME</a>
-        <a class="width-2 navButtons" href="">UPDATE</a></button>
-        <a class="width-2 navButtons" href="">DELETE</a></button>
-        <a class="width-2 navButtons" href="createStoryForm.php">CREATE</a></button>
+        <a class="width-2 navButtons" href="createStoryForm.php">CREATE Article</a></button>
         <a class="width-2 navButtons" href="addAuthorForm.php">ADD AUTHOR</a></button>
     </div>
     <!-- Logo and Subtitle -->

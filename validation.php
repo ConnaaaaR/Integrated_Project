@@ -182,6 +182,12 @@
         if (empty($data["time"])){
             $errors["time"] = "The time field is required.(PHP VALIDATION ERROR)";
         }else{
+
+            // echo '<pre>';
+            // print_r($data["time"]);
+            // print_r(sanitize_input($data["time"]));
+            // echo '</pre>';
+        
            $article["time"] = sanitize_input($data["time"]);
             if(!validate_time($article["time"])){
                 $errors["time"] = 
@@ -189,12 +195,18 @@
             }
         }
 
-        //time validation
-        if (empty($data["genre"])){
-            $errors["genre"] = "The genre field is required.(PHP VALIDATION ERROR)";
-        }else{
-          echo validateGenre($article["genre"]);
-        }
+        //genre validation
+        // if (empty($data["genre"])){
+        //     $errors["genre"] = "The genre field is required.(PHP VALIDATION ERROR)";
+        // }else{
+        //   echo validateGenre($article["genre"]);
+        // }
+
+
+        echo '<pre> validation';
+            print_r($article);
+            print_r($errors);
+            echo '</pre>';
     
         return[
            $article,

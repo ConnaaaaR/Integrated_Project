@@ -2,7 +2,7 @@
 require_once 'classes/DBConnector.php';
 require_once 'validation.php';
 
-require_once 'classes/DBConnector.php';
+
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     [$data, $errors] = article_validate($_POST,Connection::getInstance()); 
 
