@@ -1,12 +1,33 @@
 <?php
     // This file contains functions that I have created
     // to fufil formatting or other requirements for my design.
+    require_once 'classes/DBConnector.php';
+    date_default_timezone_set('Europe/London');
+
+
+
+    class DeleteEntry{
+        public static function deleteStory($tableName, $id){
+            $sql = 'DELETE FROM ' . $tableName . ' WHERE id='.$id;
+
+            $conn = Connection::getInstance();
+            $stmt = $conn -> prepare($sql);
+
+            $succ = $stmt->execute();
+            if(!$succ){
+                throw new Exception("Failed to run SQL command!");
+            }
+        }
+    }
+
+
+
 
     //----------------------------------
     // Returns current date in an abbreviated format (used in the browser tab)
     //----------------------------------
     function tabDate(){
-        date_default_timezone_set('Europe/Dublin');
+        
         return $timestamp = date('D, j M');
     }
 

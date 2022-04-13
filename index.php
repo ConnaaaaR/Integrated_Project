@@ -235,6 +235,16 @@
             ?>
         </div>
         <!-- End Side Stories -->
+        <!-- Footer -->
+        <div class="footer width-12">
+            <div><p class="footerText">Copyright World News 2022</p></div>
+            <ul class="footerLinks">
+                <li><a href="createStoryForm.php">Create New Story</a></li>
+                <li><a href="addAuthorForm.php">Add a New Author</a></li>
+            </ul>
+        </div>
+        <!-- End Footer -->
+        
     </div>
 </body>
 </html>

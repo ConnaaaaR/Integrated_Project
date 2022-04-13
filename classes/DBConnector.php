@@ -93,8 +93,7 @@ class Post
 }
 
 class Get
-{
-  
+{  
     public static function all($tableName, $limit = 0, $skip = 0)
     {
         return self::allOrderBy($tableName, 0, $limit, $skip);

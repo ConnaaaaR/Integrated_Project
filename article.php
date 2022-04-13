@@ -57,7 +57,7 @@ catch(Exeption $e){
     <div class=" width-12 navCont nested">
         <a class="width-2 navButtons" href="index.php">HOME</a>
         <a class="width-2 navButtons" href="updateArticleForm.php?id=<?= $story->id?>">UPDATE</a></button>
-        <a class="width-2 navButtons" href="">DELETE</a></button>
+        <a class="width-2 navButtons" href="deleteArticleForm.php?id=<?= $story->id?>">DELETE</a></button>
         <a class="width-2 navButtons" href="createStoryForm.php">create article</a></button>
         <a class="width-2 navButtons" href="addAuthorForm.php">add author</a></button>
     </div>

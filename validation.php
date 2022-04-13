@@ -46,7 +46,7 @@
     }
 
     function validate_time($time){
-        $regex = "/^([0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/";
+        $regex = "/^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$/";
         return preg_match($regex, $time);
     }
 
@@ -203,10 +203,10 @@
         // }
 
 
-        echo '<pre> validation';
-            print_r($article);
-            print_r($errors);
-            echo '</pre>';
+        // echo '<pre> validation';
+        //     print_r($article);
+        //     print_r($errors);
+        //     echo '</pre>';
     
         return[
            $article,
