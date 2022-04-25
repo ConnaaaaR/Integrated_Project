@@ -4,8 +4,10 @@
     require_once 'classes/DBConnector.php';
     date_default_timezone_set('Europe/London');
 
-
-
+    //----------------------------------
+    // Adapted from the edit method in DBConnector
+    // Deletes a entry from the articles table, by id
+    //----------------------------------
     class DeleteEntry{
         public static function deleteStory($tableName, $id){
             $sql = 'DELETE FROM ' . $tableName . ' WHERE id='.$id;
@@ -27,7 +29,6 @@
     // Returns current date in an abbreviated format (used in the browser tab)
     //----------------------------------
     function tabDate(){
-        
         return $timestamp = date('D, j M');
     }
 
@@ -37,7 +38,7 @@
     //----------------------------------
     function setDate($elementId, $date = True){
         // Use the $date bool to switch between time and date, defaults to date
-        //Must be given whole table as obj. Date and Time MUST be separate in table.
+        // Must be given whole table as obj. Date and Time MUST be separate in table.
         if($date){
             $formatDate = strtotime($elementId->date);
             return date('l, j F', $formatDate);
@@ -45,9 +46,6 @@
             $formatDate = strtotime($elementId->time);
             return date('H:i', $formatDate);
         }
-        
-
-        
     }
 
     //----------------------------------

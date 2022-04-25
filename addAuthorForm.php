@@ -11,14 +11,6 @@ if (isset($_SESSION["author"]) && isset($_SESSION["errors"])) {
     $errors = [];
 
 }
-echo "<pre>\$data = ";
-print_r($data);
-echo "</pre>";
-
-echo "<pre>\$errors = ";
-print_r($errors);
-echo "</pre>";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

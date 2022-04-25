@@ -8,23 +8,18 @@ try{
     if(!$story){
         throw new Exception("Failed to retrieve articles from id!");
     }
-
 }
 catch(Exception $e){
     die("Exception: ".$e-> getMessage());
 }
 
   // Small stories
-  try{
-    // $sideStories = Get::all('articles', 13);
-
+try{
     $worldStories = Get::byCategoryOrderBy('World','date DESC',3);
     $covidStories = Get::byCategoryOrderBy('COVID','date DESC',3);
     $economyStories = Get::byCategoryOrderBy('Economy','date DESC',3);
     $scienceStories = Get::byCategoryOrderBy('Science','date DESC',3);
     $politicsStories = Get::byCategoryOrderBy('Politics','date DESC',3);
-    
-    //$sideStories = Get::byCategory('Economy');
 }
 catch(Exeption $e){
     die("Exception: ".$e-> getMessage());
