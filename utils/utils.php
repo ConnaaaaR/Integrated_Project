@@ -49,7 +49,7 @@
     }
 
     //----------------------------------
-    // Returns the current London time once, when ran
+    // Returns the current London time at time of call
     //----------------------------------
     function getCurrentTime(){
         $time = date("H:i");
