@@ -1,6 +1,6 @@
 <?php
     require_once 'classes/DBConnector.php';
-    // utils.php is an aggregation of function I made for this site.
+    // utils.php is an aggregation of functions I made for this project.
     require_once 'utils/utils.php'; 
 
 

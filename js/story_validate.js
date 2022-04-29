@@ -68,6 +68,10 @@ function resetValues() {
 //------------------------------------
 //select Error and error output
 //------------------------------------
+/**
+ * @param {HTMLElement} errorVar - HTML Element to target
+ * @param {String} str - Error Message String
+ */
 function inputErrors(errorVar, str) {
     errorVar.innerHTML = str;
     errorVar.style.color = "red";

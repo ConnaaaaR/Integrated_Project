@@ -26,17 +26,6 @@ submitBtn.addEventListener("click", onSubmitForm);
 
 let error = false;
 
-// function isSelected(inputField) {
-//     let selected = false;
-//     for (let i = 0; i != inputField.length; i++) {
-//         if (inputField[i].checked) {
-//             selected = true;
-//             break;
-//         }
-//     }
-//     return selected;
-// }
-
 //------------------------------------
 // Reset the value of the error messages and error flag
 //------------------------------------
@@ -48,8 +37,12 @@ function resetValues() {
 }
 
 //------------------------------------
-//select Error and error output
+//Select Error and error output
 //------------------------------------
+/**
+ * @param {HTMLElement} errorVar - HTML Element to target
+ * @param {String} str - Error Message String
+ */
 function inputErrors(errorVar, str) {
     errorVar.innerHTML = str;
     errorVar.style.color = "red";
@@ -61,7 +54,7 @@ function regexValid(regex, str) {
 }
 
 //------------------------------------
-//check fields not empty on form submission
+//Check fields not empty on form submission
 //------------------------------------
 function onSubmitForm(event) {
     resetValues();
